@@ -31,10 +31,35 @@
 #include "Parser/ParserFactory.h"
 #include "ParserImpl.h"
 
+#include <cctype>
+
 
 using namespace Parser;
 
 
+namespace 
+{
+    // Simple functor converting wide characters to upper case.
+    struct ToUpper 
+    {
+        void operator()( wchar_t& c ) const {
+            c = toupper(c);
+        }
+    };
+}
+
+
 IParserPtr Parser::CreateParser( const std::wstring& cmdline ) {
     return IParserPtr(new ParserImpl(cmdline));
+}
+
+
+IParserPtr Parser::CreateParser( const std::wstring& cmdline, bool caseinsensitive ) 
+{
+    std::wstring cl(cmdline);
+
+    if(caseinsensitive)
+        std::for_each(cl.begin(), cl.end(), ToUpper());
+
+    return IParserPtr(new ParserImpl(cl));
 }

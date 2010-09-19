@@ -36,13 +36,25 @@
 namespace Parser
 {
     /*!
-     * Creates a new instance of an IParser implementation.
+     * Creates a new instance of an IParser implementation. Parser operations
+     * will be case sensitive.
      *
      * \ingroup Parser
      * \param   cmdline Command line to parse.
      * \return  An IParser implementation.
      */
     PARSER_API IParserPtr CreateParser( const std::wstring& cmdline );
+
+    /*!
+     * Creates a new instance of an IParser implementation.
+     *
+     * \ingroup Parser
+     * \param   cmdline Command line to parse.
+     * \param   caseinsensitive Tells whether parser operations should be case
+     *          insensitive or not.
+     * \return  An IParser implementation.
+     */
+    PARSER_API IParserPtr CreateParser( const std::wstring& cmdline, bool caseinsensitive );
 }
 
 #endif  // PARSER_PARSERFACTORY_H
