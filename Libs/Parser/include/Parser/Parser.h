@@ -53,7 +53,7 @@ namespace Parser
          * Returns true if the parsed command line contains the specified
          * argument.
          *
-         * \param  argument Argumetn
+         * \param  argument Argument
          * \return True if the command line contains the specified argument.
          */
         virtual bool HasArgument( const std::wstring& argument ) const = 0;
