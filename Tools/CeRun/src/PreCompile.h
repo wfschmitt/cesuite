@@ -1,4 +1,3 @@
-/* $Id$ */
 
 #if !defined(CERUN_PRECOMPILE_H)
 #define CERUN_PRECOMPILE_H

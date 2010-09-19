@@ -1,4 +1,3 @@
-/* $Id$ */
 
 #if !defined(CERUN_CERUNFWD_H)
 #define CERUN_CERUNFWD_H
