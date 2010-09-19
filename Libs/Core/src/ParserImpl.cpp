@@ -25,13 +25,13 @@
  */
 
 #include "PreCompile.h"
-#include "Parser/ParserException.h"
+#include "Core/ParserException.h"
 #include "ParserImpl.h"
 
 #include <algorithm>
 
 
-using namespace Parser;
+using namespace Core;
 
 
 std::wstring ParserImpl::ParseQuotedArgument( 

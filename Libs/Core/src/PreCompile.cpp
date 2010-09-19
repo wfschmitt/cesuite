@@ -21,33 +21,7 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-13 22:38
- * \brief  Parser exception definition.
+ * \brief  Core precompiled header.
  */
 
-#if !defined(PARSER_PARSEREXCEPTION_H)
-#define PARSER_PARSEREXCEPTION_H
-
-#include <stdexcept>
-
-namespace Parser
-{
-    /*!
-     * \author  Johan Andersson <skagget77@gmail.com>
-     * \date    2010-04-18 01:23
-     * \ingroup Parser
-     * \brief   The ParserException class.
-     */
-    class PARSER_API ParserException : public std::runtime_error {
-    public :
-        /*!
-         * Creates a new instance of the ParserException class.
-         *
-         * \param msg Detailed message.
-         */
-        ParserException( const std::string& msg )
-            : std::runtime_error(msg) {
-        }
-    };
-}
-
-#endif  // PARSER_PARSEREXCEPTION_H
+#include "PreCompile.h"

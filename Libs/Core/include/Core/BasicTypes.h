@@ -20,21 +20,17 @@
 /*!
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
- * \date   2010-04-11 19:15
- * \brief  Parser doxygen definitions.
+ * \date   2010-04-21 20:49
+ * \brief  Portable type definitions.
  */
 
-#error "Do not include this file"
-
-/*!
- * \defgroup Parser Parser
- */
+#if !defined(CORE_BASICTYPES_H)
+#define CORE_BASICTYPES_H
 
 /*!
- * \author  Johan Andersson <skagget77@gmail.com>
- * \date    2010-04-11 19:15
- * \ingroup Parser
- * \brief   Command line parser.
+ * \ingroup Core
+ * \brief   Unsigned 32-bit integer (0 to 4294967295).
  */
-namespace Parser {
-}
+typedef unsigned int uint32;
+
+#endif  // CORE_BASICTYPES_H

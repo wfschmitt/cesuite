@@ -24,23 +24,23 @@
  * \brief  Parser implementation.
  */
 
-#if !defined(PARSER_PARSERIMPL_H)
-#define PARSER_PARSERIMPL_H
+#if !defined(CORE_PARSERIMPL_H)
+#define CORE_PARSERIMPL_H
 
-#include "Parser/Parser.h"
+#include "Core/Parser.h"
 
 #include <string>
 #include <vector>
 
-namespace Parser
+namespace Core
 {
     /*!
      * \author  Johan Andersson <skagget77@gmail.com>
      * \date    2010-04-11 17:57
-     * \ingroup Parser
+     * \ingroup Core
      * \brief   The ParserImpl class.
      */
-    class PARSER_API ParserImpl : public IParser
+    class CORE_API ParserImpl : public IParser
     {
     public :
         /*!
@@ -95,4 +95,4 @@ namespace Parser
     };
 }
 
-#endif  // PARSER_PARSERIMPL_H
+#endif  // CORE_PARSERIMPL_H

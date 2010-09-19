@@ -20,8 +20,45 @@
 /*!
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
- * \date   2010-04-13 22:38
- * \brief  Parser precompiled header.
+ * \date   2010-04-18 01:10
+ * \brief  Parser factory.
  */
 
 #include "PreCompile.h"
+#include "Core/Parser.h"
+#include "Core/ParserFactory.h"
+#include "ParserImpl.h"
+
+#include <algorithm>
+#include <cctype>
+
+
+using namespace Core;
+
+
+namespace 
+{
+    // Simple functor converting wide characters to upper case.
+    struct ToUpper 
+    {
+        void operator()( wchar_t& c ) const {
+            c = toupper(c);
+        }
+    };
+}
+
+
+IParserPtr Core::CreateParser( const std::wstring& cmdline ) {
+    return IParserPtr(new ParserImpl(cmdline));
+}
+
+
+IParserPtr Core::CreateParser( const std::wstring& cmdline, bool caseinsensitive ) 
+{
+    std::wstring cl(cmdline);
+
+    if(caseinsensitive)
+        std::for_each(cl.begin(), cl.end(), ToUpper());
+
+    return IParserPtr(new ParserImpl(cl));
+}

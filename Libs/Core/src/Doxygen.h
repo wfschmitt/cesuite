@@ -17,11 +17,24 @@
  * Copyright 2010 Johan Andersson.
  */
 
-#if !defined(CEBEBUG_PRECOMPILE_H)
-#define CEBEBUG_PRECOMPILE_H
+/*!
+ * \file
+ * \author Johan Andersson <skagget77@gmail.com>
+ * \date   2010-04-11 19:15
+ * \brief  Core doxygen definitions.
+ */
 
-#include "Core/CoreApi.h"
-#include "Debug/DebugApi.h"
-#include "Registry/RegistryApi.h"
+#error "Do not include this file"
 
-#endif   // CEBEBUG_PRECOMPILE_H
+/*!
+ * \defgroup Core Core
+ */
+
+/*!
+ * \author  Johan Andersson <skagget77@gmail.com>
+ * \date    2010-04-11 19:15
+ * \ingroup Core
+ * \brief   Core functionality.
+ */
+namespace Core {
+}

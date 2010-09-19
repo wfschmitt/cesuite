@@ -20,18 +20,16 @@
 /*!
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
- * \date   2010-04-13 22:38
- * \brief  Parser precompiled header.
+ * \date   2010-04-21 21:04
+ * \brief  Portable type definitions.
  */
 
-#if !defined(PARSER_PRECOMPILE_H)
-#define PARSER_PRECOMPILE_H
+#include "PreCompile.h"
+#include "Core/BasicTypes.h"
 
-#if defined(_WINDLL)
-#define PARSER_DLL
-#define PARSER_EXPORT
-#endif
+#include <boost/static_assert.hpp>
 
-#include "Parser/ParserApi.h"
 
-#endif  // PARSER_PRECOMPILE_H
+namespace {
+    BOOST_STATIC_ASSERT(sizeof(uint32) == 4);
+}

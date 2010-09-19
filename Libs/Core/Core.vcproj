@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="Parser"
+	Name="Core"
 	ProjectGUID="{1E2009FE-CA2E-40E7-AD83-31BB46671AD2}"
-	RootNamespace="Parser"
+	RootNamespace="Core"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -293,29 +293,37 @@
 			Name="include"
 			>
 			<File
-				RelativePath=".\include\Parser\Parser.h"
+				RelativePath=".\include\Core\BasicTypes.h"
 				>
 			</File>
 			<File
-				RelativePath=".\include\Parser\ParserApi.h"
+				RelativePath=".\include\Core\CoreApi.h"
 				>
 			</File>
 			<File
-				RelativePath=".\include\Parser\ParserException.h"
+				RelativePath=".\include\Core\CoreFwd.h"
 				>
 			</File>
 			<File
-				RelativePath=".\include\Parser\ParserFactory.h"
+				RelativePath=".\include\Core\Parser.h"
 				>
 			</File>
 			<File
-				RelativePath=".\include\Parser\ParserFwd.h"
+				RelativePath=".\include\Core\ParserException.h"
+				>
+			</File>
+			<File
+				RelativePath=".\include\Core\ParserFactory.h"
 				>
 			</File>
 		</Filter>
 		<Filter
 			Name="src"
 			>
+			<File
+				RelativePath=".\src\BasicTypes.cpp"
+				>
+			</File>
 			<File
 				RelativePath=".\src\Doxygen.h"
 				>

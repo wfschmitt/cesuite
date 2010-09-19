@@ -21,20 +21,20 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-13 22:38
- * \brief  Export/Import Parser API.
+ * \brief  Import/Export Core API.
  */
 
-#if !defined(PARSER_PARSERAPI_H)
-#define PARSER_PARSERAPI_H
+#if !defined(CORE_COREAPI_H)
+#define CORE_COREAPI_H
 
-#if defined(PARSER_DLL)
-#if defined(PARSER_EXPORT)
-#define PARSER_API __declspec(dllexport)
+#if defined(CORE_DLL)
+#if defined(CORE_EXPORT)
+#define CORE_API __declspec(dllexport)
 #else
-#define PARSER_API __declspec(dllimport)
+#define CORE_API __declspec(dllimport)
 #endif
 #else
-#define PARSER_API
+#define CORE_API
 #endif
 
-#endif  // PARSER_PARSERAPI_H
+#endif  // CORE_COREAPI_H

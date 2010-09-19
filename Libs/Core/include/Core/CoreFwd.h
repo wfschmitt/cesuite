@@ -17,11 +17,22 @@
  * Copyright 2010 Johan Andersson.
  */
 
-#if !defined(CEBEBUG_PRECOMPILE_H)
-#define CEBEBUG_PRECOMPILE_H
+/*!
+ * \file
+ * \author Johan Andersson <skagget77@gmail.com>
+ * \date   2010-04-11 19:15
+ * \brief  Core forward declarations.
+ */
 
-#include "Core/CoreApi.h"
-#include "Debug/DebugApi.h"
-#include "Registry/RegistryApi.h"
+#if !defined(CORE_COREFWD_H)
+#define CORE_COREFWD_H
 
-#endif   // CEBEBUG_PRECOMPILE_H
+#include <boost/tr1/memory.hpp>
+
+namespace Core
+{
+    struct IParser;
+    typedef std::tr1::shared_ptr<IParser> IParserPtr;
+}
+
+#endif   // CORE_COREFWD_H

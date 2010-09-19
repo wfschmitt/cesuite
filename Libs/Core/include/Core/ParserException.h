@@ -20,44 +20,34 @@
 /*!
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
- * \date   2010-04-18 01:10
- * \brief  Parser factory.
+ * \date   2010-04-13 22:38
+ * \brief  Parser exception definition.
  */
 
-#include "PreCompile.h"
-#include "Parser/Parser.h"
-#include "Parser/ParserFactory.h"
-#include "ParserImpl.h"
+#if !defined(CORE_PARSEREXCEPTION_H)
+#define CORE_PARSEREXCEPTION_H
 
-#include <cctype>
+#include <stdexcept>
 
-
-using namespace Parser;
-
-
-namespace 
+namespace Core
 {
-    // Simple functor converting wide characters to upper case.
-    struct ToUpper 
-    {
-        void operator()( wchar_t& c ) const {
-            c = toupper(c);
+    /*!
+     * \author  Johan Andersson <skagget77@gmail.com>
+     * \date    2010-04-18 01:23
+     * \ingroup Core
+     * \brief   The ParserException class.
+     */
+    class CORE_API ParserException : public std::runtime_error {
+    public :
+        /*!
+         * Creates a new instance of the ParserException class.
+         *
+         * \param msg Detailed message.
+         */
+        ParserException( const std::string& msg )
+            : std::runtime_error(msg) {
         }
     };
 }
 
-
-IParserPtr Parser::CreateParser( const std::wstring& cmdline ) {
-    return IParserPtr(new ParserImpl(cmdline));
-}
-
-
-IParserPtr Parser::CreateParser( const std::wstring& cmdline, bool caseinsensitive ) 
-{
-    std::wstring cl(cmdline);
-
-    if(caseinsensitive)
-        std::for_each(cl.begin(), cl.end(), ToUpper());
-
-    return IParserPtr(new ParserImpl(cl));
-}
+#endif  // CORE_PARSEREXCEPTION_H

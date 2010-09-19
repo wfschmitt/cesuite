@@ -20,19 +20,18 @@
 /*!
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
- * \date   2010-04-11 19:15
- * \brief  Parser forward declarations.
+ * \date   2010-04-13 22:38
+ * \brief  Core precompiled header.
  */
 
-#if !defined(PARSER_PARSERFWD_H)
-#define PARSER_PARSERFWD_H
+#if !defined(CORE_PRECOMPILE_H)
+#define CORE_PRECOMPILE_H
 
-#include <boost/tr1/memory.hpp>
+#if defined(_WINDLL)
+#define CORE_DLL
+#define CORE_EXPORT
+#endif
 
-namespace Parser
-{
-    struct IParser;
-    typedef std::tr1::shared_ptr<IParser> IParserPtr;
-}
+#include "Core/CoreApi.h"
 
-#endif   // PARSER_PARSERFWD_H
+#endif  // CORE_PRECOMPILE_H

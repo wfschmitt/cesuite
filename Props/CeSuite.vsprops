@@ -32,8 +32,8 @@
 		Value="$(SolutionDir)Libs\Debug\include"
 	/>
 	<UserMacro
-		Name="ParserIncludeDir"
-		Value="$(SolutionDir)Libs\Parser\include"
+		Name="CoreIncludeDir"
+		Value="$(SolutionDir)Libs\Core\include"
 	/>
 	<UserMacro
 		Name="RegistryIncludeDir"

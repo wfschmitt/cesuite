@@ -24,35 +24,35 @@
  * \brief  Parser factory.
  */
 
-#if !defined(PARSER_PARSERFACTORY_H)
-#define PARSER_PARSERFACTORY_H
+#if !defined(CORE_PARSERFACTORY_H)
+#define CORE_PARSERFACTORY_H
 
-#include "ParserFwd.h"
+#include "CoreFwd.h"
 
 #include <string>
 
-namespace Parser
+namespace Core
 {
     /*!
      * Creates a new instance of an IParser implementation. Parser operations
      * will be case sensitive.
      *
-     * \ingroup Parser
+     * \ingroup Core
      * \param   cmdline Command line to parse.
      * \return  An IParser implementation.
      */
-    PARSER_API IParserPtr CreateParser( const std::wstring& cmdline );
+    CORE_API IParserPtr CreateParser( const std::wstring& cmdline );
 
     /*!
      * Creates a new instance of an IParser implementation.
      *
-     * \ingroup Parser
+     * \ingroup Core
      * \param   cmdline Command line to parse.
      * \param   caseinsensitive Tells whether parser operations should be case
      *          insensitive or not.
      * \return  An IParser implementation.
      */
-    PARSER_API IParserPtr CreateParser( const std::wstring& cmdline, bool caseinsensitive );
+    CORE_API IParserPtr CreateParser( const std::wstring& cmdline, bool caseinsensitive );
 }
 
-#endif  // PARSER_PARSERFACTORY_H
+#endif  // CORE_PARSERFACTORY_H

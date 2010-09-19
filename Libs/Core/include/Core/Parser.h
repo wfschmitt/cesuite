@@ -24,20 +24,20 @@
  * \brief  Parser interface definition.
  */
 
-#if !defined(PARSER_PARSER_H)
-#define PARSER_PARSER_H
+#if !defined(CORE_PARSER_H)
+#define CORE_PARSER_H
 
-#include "ParserFwd.h"
+#include "CoreFwd.h"
 
 #include <cstddef>
 #include <string>
 
-namespace Parser
+namespace Core
 {
     /*!
      * \author  Johan Andersson <skagget77@gmail.com>
      * \date    2010-04-18 01:23
-     * \ingroup Parser
+     * \ingroup Core
      * \brief   The IParser interface.
      */
     struct IParser
@@ -82,4 +82,4 @@ namespace Parser
     };
 }
 
-#endif  // PARSER_PARSER_H
+#endif  // CORE_PARSER_H

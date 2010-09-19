@@ -26,10 +26,10 @@
 
 #include "PreCompile.h"
 #include "ProcessMonitor.h"
+#include "Core/Parser.h"
+#include "Core/ParserFactory.h"
 #include "Debug/Debug.h"
 #include "Debug/DebugFactory.h"
-#include "Parser/Parser.h"
-#include "Parser/ParserFactory.h"
 #include "Registry/Registry.h"
 #include "Registry/RegistryFactory.h"
 
@@ -38,7 +38,6 @@
 
 using namespace CeDebug;
 using namespace Debug;
-using namespace Parser;
 using namespace Registry;
 
 
@@ -68,7 +67,7 @@ void RunProcess( const std::wstring& name, const std::wstring& file, const std::
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow )
 {
     try {
-        IParserPtr parser = CreateParser(lpCmdLine);
+        Core::IParserPtr parser = Core::CreateParser(lpCmdLine);
 
         std::wstring name = parser->GetArgumentValue(L"/name");
         std::wstring file = parser->GetArgumentValue(L"/file");
