@@ -17,6 +17,13 @@
  * Copyright 2010 Johan Andersson.
  */
 
+/*!
+ * \file
+ * \author Johan Andersson <skagget77@gmail.com>
+ * \date   2010-04-13 22:38
+ * \brief  CeAgent entry point.
+ */
+
 #include "PreCompile.h"
 #include "ProcessMonitor.h"
 #include "Debug/Debug.h"
