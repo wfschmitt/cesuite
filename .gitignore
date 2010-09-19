@@ -1,0 +1,6 @@
+Bin
+*.diff
+*.ncb
+*.patch
+*.suo
+*.user

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="WindowsCE"
+	InheritedPropertySheets="$(SolutionDir)Props\CeSuite.vsprops"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		PreprocessorDefinitions="UNDER_CE;WINCE;_WIN32_WCE=$(CEVER);$(ARCHFAM);$(_ARCHFAM_);$(PLATFORMDEFINES)"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		StackReserveSize="65535"
+		StackCommitSize="4096"
+		RandomizedBaseAddress="1"
+		DataExecutionPrevention="0"
+		TargetMachine="16"
+	/>
+</VisualStudioPropertySheet>

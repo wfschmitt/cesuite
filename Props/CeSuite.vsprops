@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="CeSuite"
+	OutputDirectory="$(SolutionDir)Bin\$(ConfigurationName)"
+	IntermediateDirectory="$(SolutionDir)Bin\$(ConfigurationName)\Tmp\$(ProjectName)"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="&quot;$(BoostIncludeDir)&quot;;include"
+		UsePrecompiledHeader="2"
+		PrecompiledHeaderThrough="PreCompile.h"
+	/>
+	<UserMacro
+		Name="ActiveSyncIncludeDir"
+		Value="C:\Program Files (x86)\Windows Mobile 6 SDK\Activesync\inc"
+		PerformEnvironmentSet="true"
+	/>
+	<UserMacro
+		Name="ActiveSyncLibDir"
+		Value="C:\Program Files (x86)\Windows Mobile 6 SDK\Activesync\lib"
+		PerformEnvironmentSet="true"
+	/>
+	<UserMacro
+		Name="BoostIncludeDir"
+		Value="D:\gs\Trunk\Vendor\Boost\boost_1_42_0"
+		PerformEnvironmentSet="true"
+	/>
+	<UserMacro
+		Name="DebugIncludeDir"
+		Value="$(SolutionDir)Libs\Debug\include"
+	/>
+	<UserMacro
+		Name="ParserIncludeDir"
+		Value="$(SolutionDir)Libs\Parser\include"
+	/>
+	<UserMacro
+		Name="RegistryIncludeDir"
+		Value="$(SolutionDir)Libs\Registry\include"
+	/>
+</VisualStudioPropertySheet>

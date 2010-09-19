@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="WindowsMobile6"
+	InheritedPropertySheets="$(SolutionDir)Props\WindowsCe.vsprops"
+	>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalOptions="/SUBSYSTEM:WINDOWSCE,5.02"
+	/>
+</VisualStudioPropertySheet>
