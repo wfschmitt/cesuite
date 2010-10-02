@@ -25,6 +25,7 @@
  */
 
 #include "PreCompile.h"
+#include "Core/BasicTypes.h"
 #include "Remote/RemoteException.h"
 #include "DeviceImpl.h"
 #include "RemoteImpl.h"
@@ -36,24 +37,32 @@ using namespace Remote;
 RemoteImpl::RemoteImpl()
 {
     if(m_Desktop.CoCreateInstance(CLSID_RAPI) != S_OK)
-        throw RemoteException("");
+        throw RemoteException(L"");
 }
 
 
 IDeviceCollection RemoteImpl::ListDevices() const
 {
-    IRAPIEnumDevicesPtr devices;
+    IRAPIEnumDevicesPtr deviceEnum;
 
-    if(m_Desktop->EnumDevices(&devices) == S_OK)
+    if(m_Desktop->EnumDevices(&deviceEnum) == S_OK)
     {
-        IDeviceCollection devices;
-        IRAPIDevicePtr device;
+        ULONG count = 0;
 
-        // Implementera en loop här.
-        if(devices->Next(&device) == S_OK)
-            devices.push_back(IDevicePtr(new DeviceImpl(device)));
+        if(deviceEnum->GetCount(&count) == S_OK)
+        {
+            IDeviceCollection deviceColl;
 
-        return devices;
+            for(uint32 i = 0; i < count; i++)
+            {
+                IRAPIDevicePtr device;
+
+                if(deviceEnum->Next(&device) == S_OK)
+                    deviceColl.push_back(IDevicePtr(new DeviceImpl(device)));
+            }
+
+            return deviceColl;
+        }
     }
 
     throw RemoteException(L"");

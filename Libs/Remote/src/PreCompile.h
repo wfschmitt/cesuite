@@ -35,6 +35,7 @@
 #include <WinSock2.h>
 #include <Rapi2.h>
 
+#include "Core/CoreApi.h"
 #include "Remote/RemoteApi.h"
 
 #pragma comment(lib, "rapi")

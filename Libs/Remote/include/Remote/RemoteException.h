@@ -27,7 +27,7 @@
 #if !defined(REMOTE_REMOTEEXCEPTION_H)
 #define REMOTE_REMOTEEXCEPTION_H
 
-#include <stdexcept>
+#include "Core/CoreException.h"
 
 namespace Remote
 {
@@ -37,16 +37,16 @@ namespace Remote
      * \ingroup Registry
      * \brief   The RemoteException class.
      */
-    class REMOTE_API RemoteException : public std::runtime_error 
+    class REMOTE_API RemoteException : public Core::CoreException
     {
     public :
         /*!
-         * Creates a new instance of the RemoteException class.
+         * Constructor.
          *
-         * \param msg Detailed message.
+         * \param details Detailed message.
          */
-        RemoteException( const std::string& msg )
-            : std::runtime_error(msg) {
+        RemoteException( const std::wstring& details )
+            : Core::CoreException(details) {
         }
     };
 }

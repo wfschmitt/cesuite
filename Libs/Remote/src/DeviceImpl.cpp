@@ -62,7 +62,7 @@ namespace
             }
         }
 
-        throw RemoteException("Failed to read source file");
+        throw RemoteException(L"Failed to read source file");
     }
 
 
@@ -84,7 +84,7 @@ namespace
             }
         }
         
-        throw RemoteException("");
+        throw RemoteException(L"");
     }
 }
 
@@ -139,7 +139,7 @@ std::wstring DeviceImpl::GetId() const
         return buf.str();
     }
 
-    throw RemoteException("");
+    throw RemoteException(L"");
 }
 
 
@@ -150,7 +150,7 @@ std::wstring DeviceImpl::GetName() const
     if(m_Device->GetDeviceInfo(&devinfo) == NOERROR)
         return devinfo.bstrName;
 
-    throw RemoteException("");
+    throw RemoteException(L"");
 }
 
 
@@ -161,7 +161,7 @@ std::wstring DeviceImpl::GetPlatform() const
     if(m_Device->GetDeviceInfo(&devinfo) == NOERROR)
         return devinfo.bstrPlatform;
 
-    throw RemoteException("");
+    throw RemoteException(L"");
 }
 
 
@@ -179,7 +179,7 @@ std::wstring DeviceImpl::GetVersion() const
         return buf.str();
     }
 
-    throw RemoteException("");
+    throw RemoteException(L"");
 }
 
 
@@ -201,7 +201,7 @@ void DeviceImpl::CopyFileTo( const std::wstring& sourcePath, const std::wstring&
         }
     }
 
-    throw RemoteException("");
+    throw RemoteException(L"");
 
 }
 
@@ -227,5 +227,5 @@ void DeviceImpl::Execute( const std::wstring path, const std::wstring& args ) co
         }
     }
 
-    throw RemoteException("");
+    throw RemoteException(L"");
 }
