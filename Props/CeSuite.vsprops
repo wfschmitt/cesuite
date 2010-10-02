@@ -9,9 +9,11 @@
 	<Tool
 		Name="VCCLCompilerTool"
 		AdditionalIncludeDirectories="&quot;$(BoostIncludeDir)&quot;;include"
+		RuntimeLibrary="2"
 		UsePrecompiledHeader="2"
 		PrecompiledHeaderThrough="PreCompile.h"
 		ProgramDataBaseFileName="$(OutDir)\$(ProjectName).pdb"
+		WarningLevel="4"
 	/>
 	<UserMacro
 		Name="ActiveSyncIncludeDir"
@@ -39,5 +41,9 @@
 	<UserMacro
 		Name="RegistryIncludeDir"
 		Value="$(SolutionDir)Libs\Registry\include"
+	/>
+	<UserMacro
+		Name="RemoteIncludeDir"
+		Value="$(SolutionDir)\Libs\Remote\include"
 	/>
 </VisualStudioPropertySheet>
