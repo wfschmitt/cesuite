@@ -21,7 +21,7 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-18 01:10
- * \brief  Parser factory.
+ * \brief  Parser factory function.
  */
 
 #include "PreCompile.h"
@@ -38,26 +38,25 @@ using namespace Core;
 
 namespace 
 {
-    // Simple functor converting wide characters to upper case.
     struct ToUpper 
     {
         void operator()( wchar_t& c ) const {
-            c = toupper(c);
+            c = std::toupper(c);
         }
     };
 }
 
 
-IParserPtr Core::CreateParser( const std::wstring& cmdline ) {
-    return IParserPtr(new ParserImpl(cmdline));
+IParserPtr Core::CreateParser( const std::wstring& cmdLine ) {
+    return IParserPtr(new ParserImpl(cmdLine));
 }
 
 
-IParserPtr Core::CreateParser( const std::wstring& cmdline, bool caseinsensitive ) 
+IParserPtr Core::CreateParser( const std::wstring& cmdLine, bool caseInsensitive ) 
 {
-    std::wstring cl(cmdline);
+    std::wstring cl(cmdLine);
 
-    if(caseinsensitive)
+    if(caseInsensitive)
         std::for_each(cl.begin(), cl.end(), ToUpper());
 
     return IParserPtr(new ParserImpl(cl));

@@ -3,14 +3,15 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="CeSuite"
-	OutputDirectory="$(SolutionDir)Bin\$(ConfigurationName)"
-	IntermediateDirectory="$(SolutionDir)Bin\$(ConfigurationName)\Tmp\$(ProjectName)"
+	OutputDirectory="$(SolutionDir)Bin\$(ConfigurationName)\$(PlatformName)"
+	IntermediateDirectory="$(SolutionDir)Bin\$(ConfigurationName)\$(PlatformName)\Tmp\$(ProjectName)"
 	>
 	<Tool
 		Name="VCCLCompilerTool"
 		AdditionalIncludeDirectories="&quot;$(BoostIncludeDir)&quot;;include"
 		UsePrecompiledHeader="2"
 		PrecompiledHeaderThrough="PreCompile.h"
+		ProgramDataBaseFileName="$(OutDir)\$(ProjectName).pdb"
 	/>
 	<UserMacro
 		Name="ActiveSyncIncludeDir"

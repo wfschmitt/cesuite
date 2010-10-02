@@ -34,96 +34,103 @@
 using namespace Core;
 
 
-std::wstring ParserImpl::ParseQuotedArgument( 
-    const std::wstring& cmdline, std::wstring::size_type& index )
+ParserImpl::ParserImpl( const std::wstring& cmdLine )
+    : m_Options(ParseComandLine(cmdLine)) {
+}
+
+
+bool ParserImpl::HasOption( const std::wstring& option ) const 
+{
+    wstringlist::const_iterator it = 
+        std::find(m_Options.begin(), m_Options.end(), option);
+
+    return it != m_Options.end();
+}
+
+
+std::wstring ParserImpl::GetOption( std::size_t index ) const 
+{
+    if(index < m_Options.size())
+        return m_Options.at(index);
+
+    throw ParserException(L"Index out of range");
+}
+
+
+std::size_t ParserImpl::GetOptionCount() const {
+    return m_Options.size();
+}
+
+
+std::wstring ParserImpl::GetValue( const std::wstring& option ) const 
+{
+    wstringlist::const_iterator it = 
+        std::find(m_Options.begin(), m_Options.end(), option);
+
+    if(it != m_Options.end() && ++it != m_Options.end())
+        return *it;
+
+    throw ParserException(L"Value not found");
+}
+
+
+std::wstring ParserImpl::GetValue( 
+    const std::wstring& option, const std::wstring& defValue ) const
+{
+    return HasOption(option) ? GetValue(option) : defValue;
+}
+
+
+std::wstring ParserImpl::ParseQuotedOption( 
+    const std::wstring& cmdLine, std::wstring::size_type& index )
 {
     // Step over the first quoatation mark before searching.
-    std::wstring::size_type next = cmdline.find('"', ++index);
+    std::wstring::size_type next = cmdLine.find('"', ++index);
 
     if(next != std::wstring::npos)
     {
         std::swap(index, next);
-        return cmdline.substr(next, index - next);
+        return cmdLine.substr(next, index - next);
     }
-    
-    throw ParserException("Unexpected end of argument");
+
+    throw ParserException(L"Unexpected end of option");
 }
 
 
-std::wstring ParserImpl::ParseSpacedArgument( 
-    const std::wstring& cmdline, std::wstring::size_type& index )
+std::wstring ParserImpl::ParseSpacedOption( 
+    const std::wstring& cmdLine, std::wstring::size_type& index )
 {
-    std::wstring::size_type next = cmdline.find(' ', index);
+    std::wstring::size_type next = cmdLine.find(' ', index);
+
+    if(next == std::wstring::npos)
+        next = cmdLine.size();
 
     std::swap(index, next);
 
-    return next != std::wstring::npos ?
-        cmdline.substr(next, index - next) : cmdline.substr(next);
+    return cmdLine.substr(next, index - next);
 }
 
 
-ParserImpl::wstringlist ParserImpl::ParseComandLine( const std::wstring& cmdline ) 
+ParserImpl::wstringlist ParserImpl::ParseComandLine( const std::wstring& cmdLine ) 
 {
     wstringlist list;
 
-    for(std::wstring::size_type index = 0; index < cmdline.size(); ++index)
+    for(std::wstring::size_type index = 0; index < cmdLine.size(); ++index)
     {
-        switch(cmdline.at(index))
+        switch(cmdLine.at(index))
         {
         case ' ' :
             break;
 
         case '"' :
-            list.push_back(ParseQuotedArgument(cmdline, index));
+            list.push_back(ParseQuotedOption(cmdLine, index));
             break;
 
         default :
-            list.push_back(ParseSpacedArgument(cmdline, index));
+            list.push_back(ParseSpacedOption(cmdLine, index));
             break;
         }
     }
 
     return list;
-}
-
-
-ParserImpl::ParserImpl( const std::wstring& cmdline )
-    : m_Arguments(ParseComandLine(cmdline)) {
-}
-
-
-bool ParserImpl::HasArgument( const std::wstring& argument ) const 
-{
-    wstringlist::const_iterator it = 
-        std::find(m_Arguments.begin(), m_Arguments.end(), argument);
-
-    return it != m_Arguments.end();
-}
-
-
-std::wstring ParserImpl::GetArgument( std::size_t index ) const 
-{
-    try {
-        return m_Arguments.at(index);
-    }
-    catch(std::range_error&) {
-        throw ParserException("Atgument index out of range");
-    }
-}
-
-
-std::size_t ParserImpl::GetArgumentCount() const {
-    return m_Arguments.size();
-}
-
-
-std::wstring ParserImpl::GetArgumentValue( const std::wstring& argument ) const 
-{
-    wstringlist::const_iterator it = 
-        std::find(m_Arguments.begin(), m_Arguments.end(), argument);
-
-    if(it != m_Arguments.end() && ++it != m_Arguments.end())
-        return *it;
-
-    throw ParserException("Value for argument not found");
 }

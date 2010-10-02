@@ -29,6 +29,12 @@
 
 /*!
  * \ingroup Core
+ * \brief   Unsigned 8-bit integer (0 to 255).
+ */
+typedef unsigned char uint8;
+
+/*!
+ * \ingroup Core
  * \brief   Unsigned 32-bit integer (0 to 4294967295).
  */
 typedef unsigned int uint32;

@@ -46,7 +46,6 @@
 				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -108,6 +107,7 @@
 				Optimization="0"
 				PreprocessorDefinitions="_LIB;DEBUG;_DEBUG"
 				MinimalRebuild="true"
+				RuntimeLibrary="3"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -179,11 +179,9 @@
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
-				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -241,9 +239,7 @@
 				Optimization="2"
 				FavorSizeOrSpeed="2"
 				PreprocessorDefinitions="_LIB;NDEBUG"
-				MinimalRebuild="false"
 				WarningLevel="3"
-				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -301,6 +297,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\include\Core\CoreException.h"
+				>
+			</File>
+			<File
 				RelativePath=".\include\Core\CoreFwd.h"
 				>
 			</File>
@@ -322,6 +322,10 @@
 			>
 			<File
 				RelativePath=".\src\BasicTypes.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\CoreException.cpp"
 				>
 			</File>
 			<File

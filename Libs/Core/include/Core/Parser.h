@@ -21,7 +21,7 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-18 01:23
- * \brief  Parser interface definition.
+ * \brief  Parser interface.
  */
 
 #if !defined(CORE_PARSER_H)
@@ -38,7 +38,7 @@ namespace Core
      * \author  Johan Andersson <skagget77@gmail.com>
      * \date    2010-04-18 01:23
      * \ingroup Core
-     * \brief   The IParser interface.
+     * \brief   IParser interface.
      */
     struct IParser
     {
@@ -49,37 +49,52 @@ namespace Core
 
         /*!
          * Returns true if the parsed command line contains the specified
-         * argument.
+         * option.
          *
-         * \param  argument Argument
-         * \return True if the command line contains the specified argument.
+         * \param  option Option.
+         * \return True if the command line contains the specified option,
+         *         false otherwise.
          */
-        virtual bool HasArgument( const std::wstring& argument ) const = 0;
+        virtual bool HasOption( const std::wstring& option ) const = 0;
 
         /*!
-         * Returns the argument with the specified index.
+         * Returns the option at the specified index.
          *
          * \param  index Index.
-         * \return Argument with the specified index.
+         * \return Option at the specified index.
+         * \throws ParserException When index is out of range.
          */
-        virtual std::wstring GetArgument( std::size_t index ) const = 0;
+        virtual std::wstring GetOption( std::size_t index ) const = 0;
 
         /*!
-         * Returns the number of arguments.
+         * Returns the number of options.
          *
-         * \return The number of arguments.
+         * \return Number of options.
          */
-        virtual std::size_t GetArgumentCount() const = 0;
+        virtual std::size_t GetOptionCount() const = 0;
 
         /*!
-         * Returns the value of the specified argument. The value is the 
-         * argument following the specified argument.
+         * Returns the value of the specified option.
          *
-         * \param  argument Argument.
-         * \return Value of the specified argument.
+         * \param  option Option.
+         * \return Value of the specified option.
+         * \throws ParserException When the specified option can't be found or
+         *         has no value.
          */
-        virtual std::wstring GetArgumentValue( const std::wstring& option ) const = 0;
+        virtual std::wstring GetValue( const std::wstring& option ) const = 0;
+
+        /*!
+         * Returns the value of the specified option or \p defValue if the
+         * parsed command line is missing the option.
+         *
+         * \param  option Option.
+         * \param  defval Default value.
+         * \return Value of the specified option.
+         * \throws ParserException When the specified option has no value.
+         */
+        virtual std::wstring GetValue(
+            const std::wstring& option, const std::wstring& defValue ) const = 0;
     };
 }
 
-#endif  // CORE_PARSER_H
+#endif  /* CORE_PARSER_H */

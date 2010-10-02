@@ -20,35 +20,26 @@
 /*!
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
- * \date   2010-04-13 22:38
- * \brief  ParserException definition.
+ * \date   2010-10-01 15:51
+ * \brief  CoreException definition.
  */
 
-#if !defined(CORE_PARSEREXCEPTION_H)
-#define CORE_PARSEREXCEPTION_H
+#include "PreCompile.h"
+#include "Core/CoreException.h"
 
-#include "CoreException.h"
 
-namespace Core
-{
-    /*!
-     * \author  Johan Andersson <skagget77@gmail.com>
-     * \date    2010-04-18 01:23
-     * \ingroup Core
-     * \brief   ParserException class.
-     */
-    class CORE_API ParserException : public CoreException
-    {
-    public :
-        /*!
-         * Creates a new instance of the ParserException class.
-         *
-         * \param msg Detailed message.
-         */
-        ParserException( const std::wstring& msg )
-            : CoreException(msg) {
-        }
-    };
+using namespace Core;
+
+
+CoreException::CoreException( const std::wstring& details ) 
+    : m_Details(details) {
 }
 
-#endif  // CORE_PARSEREXCEPTION_H
+
+CoreException::~CoreException() {
+}
+
+
+std::wstring CoreException::GetDetails() const {
+    return m_Details;
+}

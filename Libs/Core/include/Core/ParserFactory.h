@@ -21,7 +21,7 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-13 22:38
- * \brief  Parser factory.
+ * \brief  Parser factory function.
  */
 
 #if !defined(CORE_PARSERFACTORY_H)
@@ -34,25 +34,29 @@
 namespace Core
 {
     /*!
-     * Creates a new instance of an IParser implementation. Parser operations
-     * will be case sensitive.
+     * Returns a new IParser implementation. Parser operations will be case
+     * sensitive.
      *
      * \ingroup Core
-     * \param   cmdline Command line to parse.
+     * \param   cmdLine Command line to parse.
      * \return  An IParser implementation.
+     * \throws  ParserException If an error occurs while parsing the command
+     *          line.
      */
-    CORE_API IParserPtr CreateParser( const std::wstring& cmdline );
+    CORE_API IParserPtr CreateParser( const std::wstring& cmdLine );
 
     /*!
-     * Creates a new instance of an IParser implementation.
+     * Returns a new IParser implementation.
      *
      * \ingroup Core
-     * \param   cmdline Command line to parse.
-     * \param   caseinsensitive Tells whether parser operations should be case
+     * \param   cmdLine Command line to parse.
+     * \param   caseInsensitive Tells whether parser operations should be case
      *          insensitive or not.
      * \return  An IParser implementation.
+     * \throws  ParserException If an error occurs while parsing the command
+     *          line.
      */
-    CORE_API IParserPtr CreateParser( const std::wstring& cmdline, bool caseinsensitive );
+    CORE_API IParserPtr CreateParser( const std::wstring& cmdLine, bool caseInsensitive );
 }
 
 #endif  // CORE_PARSERFACTORY_H

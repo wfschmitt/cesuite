@@ -38,60 +38,70 @@ namespace Core
      * \author  Johan Andersson <skagget77@gmail.com>
      * \date    2010-04-11 17:57
      * \ingroup Core
-     * \brief   The ParserImpl class.
+     * \brief   ParserImpl class.
      */
     class CORE_API ParserImpl : public IParser
     {
     public :
         /*!
-         * Creates a new instance of the ParserImpl class.
+         * Constructor
          *
-         * \param cmdline Command line to parse.
+         * \param  cmdLine Command line to parse.
+         * \throws ParserException If an error occurs while parsing the command
+         *         line.
          */
-        ParserImpl( const std::wstring& cmdline );
+        ParserImpl( const std::wstring& cmdLine );
 
-        /*
-         * Inherited from IParser.
-         */
-        bool HasArgument( const std::wstring& argument ) const;
-        std::wstring GetArgument( std::size_t index ) const;
-        std::size_t GetArgumentCount() const;
-        std::wstring GetArgumentValue( const std::wstring& argument ) const;
+        /* Documented in IParser. */
+        bool HasOption( const std::wstring& option ) const;
+
+        /* Documented in IParser. */
+        std::wstring GetOption( std::size_t index ) const;
+
+        /* Documented in IParser. */
+        std::size_t GetOptionCount() const;
+
+        /* Documented in IParser. */
+        std::wstring GetValue( const std::wstring& option ) const;
+
+        /* Documented in IParser. */
+        std::wstring GetValue( 
+            const std::wstring& option, const std::wstring& defValue ) const;
 
     private :
         typedef std::vector<std::wstring> wstringlist;
 
         /*!
-         * Parses the next quoted command line argument starting at the 
-         * specified index.
+         * Parses the next quoted command line option starting at the specified
+         * index.
          *
-         * \param  cmdline Command line.
+         * \param  cmdLine Command line.
          * \param  index Command line character index.
-         * \return Argument.
+         * \return Option.
          */
-        static std::wstring ParserImpl::ParseQuotedArgument( 
-            const std::wstring& cmdline, std::wstring::size_type& index );
+        static std::wstring ParserImpl::ParseQuotedOption( 
+            const std::wstring& cmdLine, std::wstring::size_type& index );
 
         /*!
-         * Parses the next space separated command line argument starting at
-         * the specified index.
+         * Parses the next space separated command line option starting at the
+         * specified index.
          *
-         * \param  cmdline Command line.
+         * \param  cmdLine Command line.
          * \param  index Command line character index.
-         * \return Argument.
+         * \return Option.
          */
-        static std::wstring ParserImpl::ParseSpacedArgument( 
-            const std::wstring& cmdline, std::wstring::size_type& index );
+        static std::wstring ParserImpl::ParseSpacedOption( 
+            const std::wstring& cmdLine, std::wstring::size_type& index );
 
         /*!
          * Parses the specified command line.
          *
-         * \param  cmdline Command line.
-         * \return Argument collection.
+         * \param  cmdLine Command line.
+         * \return Option collection.
          */
-        static wstringlist ParserImpl::ParseComandLine( const std::wstring& cmdline );
+        static wstringlist ParserImpl::ParseComandLine( const std::wstring& cmdLine );
 
-        wstringlist m_Arguments;
+        wstringlist m_Options;
     };
 }
 

@@ -30,6 +30,8 @@
 #include <boost/static_assert.hpp>
 
 
-namespace {
+namespace 
+{
+    BOOST_STATIC_ASSERT(sizeof(uint8) == 1);
     BOOST_STATIC_ASSERT(sizeof(uint32) == 4);
 }
