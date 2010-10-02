@@ -26,6 +26,7 @@
 
 #include "PreCompile.h"
 #include "Core/ParserException.h"
+#include "OptionFinder.h"
 #include "ParserImpl.h"
 
 #include <algorithm>
@@ -34,15 +35,16 @@
 using namespace Core;
 
 
-ParserImpl::ParserImpl( const std::wstring& cmdLine )
-    : m_Options(ParseComandLine(cmdLine)) {
+ParserImpl::ParserImpl( const std::wstring& cmdLine, bool caseInsensitive )
+    : m_Options(ParseComandLine(cmdLine)), m_CaseInsensitive(caseInsensitive) {
 }
 
 
 bool ParserImpl::HasOption( const std::wstring& option ) const 
 {
     wstringlist::const_iterator it = 
-        std::find(m_Options.begin(), m_Options.end(), option);
+        std::find_if(m_Options.begin(), m_Options.end(), 
+            OptionFinder(option, m_CaseInsensitive));
 
     return it != m_Options.end();
 }
@@ -65,7 +67,8 @@ std::size_t ParserImpl::GetOptionCount() const {
 std::wstring ParserImpl::GetValue( const std::wstring& option ) const 
 {
     wstringlist::const_iterator it = 
-        std::find(m_Options.begin(), m_Options.end(), option);
+        std::find_if(m_Options.begin(), m_Options.end(), 
+            OptionFinder(option, m_CaseInsensitive));
 
     if(it != m_Options.end() && ++it != m_Options.end())
         return *it;

@@ -47,10 +47,12 @@ namespace Core
          * Constructor
          *
          * \param  cmdLine Command line to parse.
+         * \param  caseInsensitive Tells whether parser operations should be
+         *         case insensitive or not.
          * \throws ParserException If an error occurs while parsing the command
          *         line.
          */
-        ParserImpl( const std::wstring& cmdLine );
+        ParserImpl( const std::wstring& cmdLine, bool caseInsensitive );
 
         /* Documented in IParser. */
         bool HasOption( const std::wstring& option ) const;
@@ -102,6 +104,7 @@ namespace Core
         static wstringlist ParserImpl::ParseComandLine( const std::wstring& cmdLine );
 
         wstringlist m_Options;
+        bool m_CaseInsensitive;
     };
 }
 

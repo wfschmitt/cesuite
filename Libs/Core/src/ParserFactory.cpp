@@ -29,35 +29,15 @@
 #include "Core/ParserFactory.h"
 #include "ParserImpl.h"
 
-#include <algorithm>
-#include <cctype>
-
 
 using namespace Core;
 
 
-namespace 
-{
-    struct ToUpper 
-    {
-        void operator()( wchar_t& c ) const {
-            c = std::toupper(c);
-        }
-    };
-}
-
-
 IParserPtr Core::CreateParser( const std::wstring& cmdLine ) {
-    return IParserPtr(new ParserImpl(cmdLine));
+    return IParserPtr(new ParserImpl(cmdLine, false));
 }
 
 
-IParserPtr Core::CreateParser( const std::wstring& cmdLine, bool caseInsensitive ) 
-{
-    std::wstring cl(cmdLine);
-
-    if(caseInsensitive)
-        std::for_each(cl.begin(), cl.end(), ToUpper());
-
-    return IParserPtr(new ParserImpl(cl));
+IParserPtr Core::CreateParser( const std::wstring& cmdLine, bool caseInsensitive ) {
+    return IParserPtr(new ParserImpl(cmdLine, caseInsensitive));
 }

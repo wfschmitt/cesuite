@@ -334,6 +334,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\OptionFinder.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\ParserFactory.cpp"
 				>
 			</File>
