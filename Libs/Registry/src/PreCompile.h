@@ -32,6 +32,7 @@
 #define REGISTRY_EXPORT
 #endif
 
+#include "Core/CoreApi.h"
 #include "Registry/RegistryApi.h"
 
-#endif  // REGISTRY_PRECOMPILE_H
+#endif  /* REGISTRY_PRECOMPILE_H */

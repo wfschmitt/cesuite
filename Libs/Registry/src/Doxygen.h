@@ -34,7 +34,7 @@
  * \author  Johan Andersson <skagget77@gmail.com>
  * \date    2010-04-19 19:57
  * \ingroup Registry
- * \brief   Registry access.
+ * \brief   Wrapper around Windows registry API.
  */
 namespace Registry {
 }

@@ -43,9 +43,9 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="$(CoreIncludeDir)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -105,9 +105,10 @@
 				Name="VCCLCompilerTool"
 				ExecutionBucket="7"
 				Optimization="0"
-				AdditionalIncludeDirectories=""
+				AdditionalIncludeDirectories="$(CoreIncludeDir)"
 				PreprocessorDefinitions="_LIB;DEBUG;_DEBUG"
 				MinimalRebuild="true"
+				RuntimeLibrary="3"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -177,12 +178,11 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="$(CoreIncludeDir)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
-				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -239,10 +239,9 @@
 				ExecutionBucket="7"
 				Optimization="2"
 				FavorSizeOrSpeed="2"
+				AdditionalIncludeDirectories="$(CoreIncludeDir)"
 				PreprocessorDefinitions="_LIB;NDEBUG"
-				MinimalRebuild="false"
 				WarningLevel="3"
-				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"

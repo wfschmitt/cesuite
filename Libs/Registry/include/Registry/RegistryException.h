@@ -21,13 +21,13 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-13 22:38
- * \brief  Parser exception definition.
+ * \brief  RegistryException definition.
  */
 
 #if !defined(REGISTRY_REGISTRYEXCEPTION_H)
 #define REGISTRY_REGISTRYEXCEPTION_H
 
-#include <stdexcept>
+#include "Core/CoreException.h"
 
 namespace Registry
 {
@@ -35,19 +35,20 @@ namespace Registry
      * \author  Johan Andersson <skagget77@gmail.com>
      * \date    2010-04-18 01:23
      * \ingroup Registry
-     * \brief   The RegistryException class.
+     * \brief   RegistryException class.
      */
-    class REGISTRY_API RegistryException : public std::runtime_error {
+    class REGISTRY_API RegistryException : Core::CoreException
+    {
     public :
         /*!
-         * Creates a new instance of the RegistryException class.
+         * Constructor.
          *
-         * \param msg Detailed message.
+         * \param details Detailed message.
          */
-        RegistryException( const std::string& msg )
-            : std::runtime_error(msg) {
+        RegistryException( const std::wstring& details )
+            : Core::CoreException(details) {
         }
     };
 }
 
-#endif  // REGISTRY_REGISTRYEXCEPTION_H
+#endif  /* REGISTRY_REGISTRYEXCEPTION_H */

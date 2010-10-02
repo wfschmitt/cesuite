@@ -32,7 +32,7 @@
 namespace Registry
 {
    /*!
-    * Creates a new instance of an IRegistry implementation.
+    * Returns a new IRegistry implementation.
     * 
     * \ingroup Registry
     * \return  An IRegistry implementation.
@@ -40,7 +40,7 @@ namespace Registry
    REGISTRY_API IRegistryPtr CreateRegistry();
 
    /*!
-    * Creates a new instance of an IRegistry implementation.
+    * Returns a new IRegistry implementation.
     * 
     * \ingroup Registry
     * \param   key Registry key.
@@ -49,4 +49,4 @@ namespace Registry
    REGISTRY_API IRegistryPtr CreateRegistry( const std::wstring& key );
 }
 
-#endif   // REGISTRY_REGISTRYFACTORY_H
+#endif   /* REGISTRY_REGISTRYFACTORY_H */

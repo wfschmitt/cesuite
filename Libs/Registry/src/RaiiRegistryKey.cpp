@@ -32,40 +32,28 @@
 using namespace Registry;
 
 
-namespace {
-    const int rw = KEY_QUERY_VALUE|KEY_SET_VALUE;
-}
-
-
-RaiiOpenKey::RaiiOpenKey( const std::wstring& key )
+RaiiRegKey::RaiiRegKey( const std::wstring& key, bool createKey )
 {
-    if(RegOpenKeyEx(HKEY_CURRENT_USER, key.c_str(), 0, rw, &m_Key) != ERROR_SUCCESS)
-        throw RegistryException("");
+    if(createKey)
+    {
+        if(RegCreateKeyEx(HKEY_CURRENT_USER, key.c_str(), 0, 0, 0,
+            KEY_QUERY_VALUE|KEY_SET_VALUE, 0, &m_Key, 0) != ERROR_SUCCESS)
+            throw RegistryException(L"Failed to create registry key");
+    }
+    else
+    {
+        if(RegOpenKeyEx(HKEY_CURRENT_USER, key.c_str(), 0, 
+            KEY_QUERY_VALUE|KEY_SET_VALUE, &m_Key) != ERROR_SUCCESS)
+            throw RegistryException(L"Failed to open registry key");
+    }
 }
 
 
-RaiiOpenKey::~RaiiOpenKey() {
+RaiiRegKey::~RaiiRegKey() {
     RegCloseKey(m_Key);
 }
 
 
-RaiiOpenKey::operator HKEY() const {
-    return m_Key;
-}
-
-
-RaiiCreateKey::RaiiCreateKey( const std::wstring& key ) 
-{
-    if(RegCreateKeyEx(HKEY_CURRENT_USER, key.c_str(), 0, 0, 0, rw, 0, &m_Key, 0) != ERROR_SUCCESS)
-        throw RegistryException("");
-}
-
-
-RaiiCreateKey::~RaiiCreateKey() {
-    RegCloseKey(m_Key);
-}
-
-
-RaiiCreateKey::operator HKEY() const {
+RaiiRegKey::operator HKEY() const {
     return m_Key;
 }

@@ -21,7 +21,7 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-11 17:57
- * \brief  Registry interface definition.
+ * \brief  Registry interface.
  */
 
 #if !defined(REGISTRY_REGISTRY_H)
@@ -37,7 +37,7 @@ namespace Registry
     * \author  Johan Andersson <skagget77@gmail.com>
     * \date    2010-04-11 17:57
     * \ingroup Registry
-    * \brief   The IRegistry interface.
+    * \brief   IRegistry interface.
     */
    struct IRegistry
    {
@@ -47,36 +47,39 @@ namespace Registry
       virtual ~IRegistry() {}
 
       /*!
-       * Returns true if the value, identified by the specified key, exist.
+       * Returns true if there exist a value with the specified name.
        *
-       * \param  key 
-       * \return 
+       * \param  name Name. 
+       * \return True if there exist a value with the specified name.
        */
       virtual bool HasValue( const std::wstring& name ) const = 0;
 
       /*!
-       * Returns the value as an intenger.
+       * Returns the value with the specified name as an intenger.
        *
-       * \param  name 
-       * \return 
+       * \param  name Name.
+       * \return Named value as an integer.
+       * \throws RegistryException When the named value cannot be gotten.
        */
       virtual int GetValueInt( const std::wstring& name ) const = 0;
 
       /*! 
-       * Sets the value of the specified registry key.
+       * Sets the value with the specified name to the given integer value.
        *
-       * \param name Registry key name.
-       * \param value Value
+       * \param  name Name.
+       * \param  value Integer value.
+       * \throws RegistryException When the named value cannot be set.
        */
       virtual void SetValueInt( const std::wstring& name, int value ) = 0;
 
       /*!
-       * Removes the specified value.
+       * Removes the value with the specified name.
        *
-       * \param key Key identifying the value.
+       * \param  name Name.
+       * \throws RegistryException When the named value cannot be removed.
        */
       virtual void RemoveValue( const std::wstring& name ) = 0;
    };
 }
 
-#endif   // REGISTRY_REGISTRY_H
+#endif   /* REGISTRY_REGISTRY_H */

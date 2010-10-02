@@ -35,4 +35,4 @@ namespace Registry
     typedef std::tr1::shared_ptr<IRegistry> IRegistryPtr;
 }
 
-#endif  // REGISTRY_REGISTRYFWD_H
+#endif  /* REGISTRY_REGISTRYFWD_H */

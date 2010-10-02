@@ -21,7 +21,7 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-13 22:38
- * \brief  Export/Import Registry API.
+ * \brief  Registry API import/export.
  */
 
 #if !defined(REGISTRY_REGISTRYAPI_H)
@@ -37,4 +37,4 @@
 #define REGISTRY_API
 #endif
 
-#endif  // REGISTRY_REGISTRYAPI_H
+#endif  /* REGISTRY_REGISTRYAPI_H */

@@ -35,24 +35,33 @@ namespace Registry
      * \author  Johan Andersson <skagget77@gmail.com>
      * \date    2010-04-19 20:01
      * \ingroup Registry
-     * \brief   The RegistryImpl class.
+     * \brief   RegistryImpl class.
      */
     class REGISTRY_API RegistryImpl : public IRegistry
     {
     public :
         /*!
-         *
-         *
-         * \param  root 
+         * Constructor.
          */
-        RegistryImpl( const std::wstring& key = L"" );
-        
-        /*
-         * Inherited from IRegistry.
+        RegistryImpl();
+
+        /*!
+         * Constructor.
+         *
+         * \param key Registry key.
          */
+        RegistryImpl( const std::wstring& key );
+
+        /* Documented in IRegistry. */
         bool HasValue( const std::wstring& name ) const;
+
+        /* Documented in IRegistry. */
         int GetValueInt( const std::wstring& name ) const;
+
+        /* Documented in IRegistry. */
         void SetValueInt( const std::wstring& name, int value );
+
+        /* Documented in IRegistry. */
         void RemoveValue( const std::wstring& name );
 
     private :
@@ -60,4 +69,4 @@ namespace Registry
     };
 }
 
-#endif   // REGISTRY_REGISTRYIMPL_H
+#endif   /* REGISTRY_REGISTRYIMPL_H */

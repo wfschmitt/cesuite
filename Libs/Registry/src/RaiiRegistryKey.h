@@ -21,7 +21,7 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-19 20:00
- * \brief  RAII Registry keys.
+ * \brief  Win32 registry key with RAII semantics.
  */
 
 #if !defined(REGISTRY_RAIIREGISTRYKEY_H)
@@ -33,24 +33,33 @@
 
 namespace Registry
 {
-    class RaiiOpenKey
+    /*!
+     * \author  Johan Andersson <skagget77@gmail.com>
+     * \date    2010-10-02 14:25
+     * \ingroup Registry
+     * \brief   RaiiRegKey class.
+     */
+    class RaiiRegKey
     {
     public :
-        RaiiOpenKey( const std::wstring& key );
-        ~RaiiOpenKey();
+        /*!
+         * Constructor.
+         *
+         * \param key Registry key name.
+         * \param createKey True to create the key, false to open it.
+         */
+        RaiiRegKey( const std::wstring& key, bool createKey );
 
-        operator HKEY() const;
+        /*!
+         * Destructor.
+         */
+        ~RaiiRegKey();
 
-    private :
-        HKEY m_Key;
-    };
-
-    class RaiiCreateKey
-    {
-    public :
-        RaiiCreateKey( const std::wstring& key );
-        ~RaiiCreateKey();
-
+        /*!
+         * Converts the instance to a Win32 HKEY.
+         *
+         * \return Win32 HKEY.
+         */
         operator HKEY() const;
 
     private :
@@ -58,4 +67,4 @@ namespace Registry
     };
 }
 
-#endif  // REGISTRY_RAIIREGISTRYKEY_H
+#endif  /* REGISTRY_RAIIREGISTRYKEY_H */
