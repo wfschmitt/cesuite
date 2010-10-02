@@ -31,8 +31,8 @@
 
 namespace Debug
 {
-    struct IDebug;
-    typedef std::tr1::shared_ptr<IDebug> IDebugPtr;
+    struct IDebugger;
+    typedef std::tr1::shared_ptr<IDebugger> IDebuggerPtr;
 
     struct IDebugListener;
     typedef std::tr1::shared_ptr<IDebugListener> IDebugListenerPtr;

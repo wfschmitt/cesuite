@@ -32,6 +32,7 @@
 #define DEBUG_EXPORT
 #endif
 
+#include "Core/CoreApi.h"
 #include "Debug/DebugApi.h"
 
 #endif  // DEBUG_PRECOMPILE_H

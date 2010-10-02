@@ -21,25 +21,38 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-19 20:30
- * \brief  Debug factory function.
+ * \brief  Debugger implementation.
  */
 
-#include "PreCompile.h"
-#include "Debug/Debug.h"
-#include "Debug/DebugFactory.h"
+#if !defined(DEBUG_DEBUGGERIMPL_H)
+#define DEBUG_DEBUGGERIMPL_H
+
+#include "Debug/Debugger.h"
 #include "Debug/DebugListener.h"
-#include "DebugImpl.h"
 
+#include <vector>
 
-using namespace Debug;
-
-
-IDebugPtr Debug::CreateDebug( IDebugListenerPtr listener ) 
+namespace Debug
 {
-   IDebugPtr debug(new DebugImpl);
+   /*!
+    * \author  Johan Andersson <skagget77@gmail.com>
+    * \date    2010-04-11 17:57
+    * \ingroup Debug
+    * \brief   DebuggerImpl class.
+    */
+    class DebuggerImpl : public IDebugger
+    {
+    public :
+        /* Documented in IDebug. */
+        void RegisterListener( IDebugListenerPtr listener );
 
-   // Register listener with debug implementation.
-   debug->RegisterListener(listener);
+        /* Documented in IDebug. */
+        bool Wait() const;
 
-   return debug;
+    private :
+        typedef std::vector<IDebugListenerPtr> DebugListenerCollection;
+        DebugListenerCollection m_Listeners;
+    };
 }
+
+#endif   // DEBUG_DEBUGGERIMPL_H

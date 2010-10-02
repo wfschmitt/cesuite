@@ -34,7 +34,7 @@
  * \author  Johan Andersson <skagget77@gmail.com>
  * \date    2010-04-19 20:21
  * \ingroup Debug
- * \brief   Wrapper around Windows CE debug API.
+ * \brief   Wrapper around Windows debug API.
  */
 namespace Debug {
 }

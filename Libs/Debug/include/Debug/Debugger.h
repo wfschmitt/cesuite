@@ -20,39 +20,44 @@
 /*!
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
- * \date   2010-04-19 20:30
- * \brief  Debug implementation.
+ * \date   2010-04-19 20:25
+ * \brief  Debugger interface.
  */
 
-#if !defined(DEBUG_DEBUGIMPL_H)
-#define DEBUG_DEBUGIMPL_H
+#if !defined(DEBUG_DEBUGGER_H)
+#define DEBUG_DEBUGGER_H
 
-#include "Debug/Debug.h"
-#include "Debug/DebugListener.h"
-
-#include <vector>
+#include "DebugFwd.h"
 
 namespace Debug
 {
-   /*!
-    * \author  Johan Andersson <skagget77@gmail.com>
-    * \date    2010-04-11 17:57
-    * \ingroup Debug
-    * \brief   The DebugImpl class.
-    */
-    class DebugImpl : public IDebug
+    /*!
+     * \author  Johan Andersson <skagget77@gmail.com>
+     * \date    2010-04-19 20:25
+     * \ingroup Debug
+     * \brief   IDebugger interface.
+     */
+    struct IDebugger
     {
-    public :
-        /*
-         * Inherited from IDebug.
+        /*!
+         * Destructor.
          */
-        void RegisterListener( IDebugListenerPtr listener );
-        bool Wait() const;
+        virtual ~IDebugger() {}
 
-    private :
-        typedef std::vector<IDebugListenerPtr> DebugListenerCollection;
-        DebugListenerCollection m_Listeners;
+        /*! 
+         * Register a debug listener.
+         *
+         * \param listener Debug listener.
+         */
+        virtual void RegisterListener( IDebugListenerPtr listener ) = 0;
+
+        /*!
+         * Waits for a debug event to occur.
+         *
+         * \return True if more debug events can occur, false otherwise.
+         */
+        virtual bool Wait() const = 0;
     };
 }
 
-#endif   // DEBUG_DEBUGIMPL_H
+#endif   /* DEBUG_DEBUGGER_H */

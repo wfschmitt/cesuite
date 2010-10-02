@@ -20,44 +20,25 @@
 /*!
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
- * \date   2010-04-19 20:25
- * \brief  Debug interface definition.
+ * \date   2010-04-19 20:26
+ * \brief  Debugger factory function.
  */
 
-#if !defined(DEBUG_DEBUG_H)
-#define DEBUG_DEBUG_H
+#if !defined(DEBUG_DEBUGGERFACTORY_H)
+#define DEBUG_DEBUGGERFACTORY_H
 
 #include "DebugFwd.h"
 
 namespace Debug
 {
-    /*!
-     * \author  Johan Andersson <skagget77@gmail.com>
-     * \date    2010-04-19 20:25
-     * \ingroup Debug
-     * \brief   The IDebug interface.
-     */
-    struct IDebug
-    {
-        /*!
-         * Destructor.
-         */
-        virtual ~IDebug() {}
-
-        /*! 
-         * Register an additional listener.
-         *
-         * \param listener Listener.
-         */
-        virtual void RegisterListener( IDebugListenerPtr listener ) = 0;
-
-        /*!
-         * Waits for a new debug event to occur.
-         *
-         * \return True if more debug events can occur, false otherwise.
-         */
-        virtual bool Wait() const = 0;
-    };
+   /*!    
+    * Returns a new IDebugger implementation.
+    *
+    * \ingroup Debug
+    * \param   listener Debug listener to register with the returned instance.
+    * \return  An IDebugger implementation.
+    */
+   DEBUG_API IDebuggerPtr CreateDebugger( IDebugListenerPtr listener );
 }
 
-#endif   // DEBUG_DEBUG_H
+#endif   // DEBUG_DEBUGGERFACTORY_H

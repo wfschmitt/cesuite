@@ -21,7 +21,7 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-13 22:38
- * \brief  Export/Import Debug API.
+ * \brief  Debug API import/export.
  */
 
 #if !defined(DEBUG_DEBUGAPI_H)

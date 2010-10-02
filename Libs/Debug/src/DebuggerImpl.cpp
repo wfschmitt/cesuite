@@ -25,7 +25,7 @@
  */
 
 #include "PreCompile.h"
-#include "DebugImpl.h"
+#include "DebuggerImpl.h"
 
 #include <Windows.h>
 
@@ -37,84 +37,119 @@ using namespace Debug;
 
 namespace 
 {
-   struct OnCreateProcess 
-   {
-      OnCreateProcess( LPCREATE_PROCESS_DEBUG_INFO info ) {
-      }
+    class OnCreateProcess 
+    {
+    public :
+        OnCreateProcess( LPCREATE_PROCESS_DEBUG_INFO info )
+            : m_Info(info) {
+        }
 
-      void operator()( IDebugListenerPtr listener ) const {
-         listener->OnCreateProcess();
-      }
-   };
+        void operator()( IDebugListenerPtr listener ) const {
+            listener->OnCreateProcess();
+        }
 
-   struct OnExitProcess 
-   {
-      OnExitProcess( LPEXIT_PROCESS_DEBUG_INFO info ) {
-      }
+    private :
+        LPCREATE_PROCESS_DEBUG_INFO m_Info;
+    };
 
-      void operator()( IDebugListenerPtr listener ) const {
-         listener->OnExitProcess();
-      }
-   };
+    class OnExitProcess 
+    {
+    public :
+        OnExitProcess( LPEXIT_PROCESS_DEBUG_INFO info )
+            : m_Info(info) {
+        }
 
-   struct OnCreateThread
-   {
-      OnCreateThread( LPCREATE_THREAD_DEBUG_INFO info ) {
-      }
+        void operator()( IDebugListenerPtr listener ) const {
+            listener->OnExitProcess(m_Info->dwExitCode);
+        }
 
-      void operator()( IDebugListenerPtr listener ) const {
-         listener->OnCreateThread();
-      }
-   };
+    private :
+        LPEXIT_PROCESS_DEBUG_INFO m_Info;
+    };
 
-   struct OnExitThread
-   {
-      OnExitThread( LPEXIT_THREAD_DEBUG_INFO info ) {
-      }
+    class OnCreateThread
+    {
+    public :
+        OnCreateThread( LPCREATE_THREAD_DEBUG_INFO info )
+            : m_Info(info) {
+        }
 
-      void operator()( IDebugListenerPtr listener ) const {
-         listener->OnExitThread();
-      }
-   };
+        void operator()( IDebugListenerPtr listener ) const {
+            listener->OnCreateThread();
+        }
 
-   struct OnLoadDll
-   {
-      OnLoadDll( LPLOAD_DLL_DEBUG_INFO info ) {
-      }
+    private :
+        LPCREATE_THREAD_DEBUG_INFO m_Info;
+    };
 
-      void operator()( IDebugListenerPtr listener ) const {
-         listener->OnLoadDll();
-      }
-   };
+    class OnExitThread
+    {
+    public :
+        OnExitThread( LPEXIT_THREAD_DEBUG_INFO info )
+            : m_Info(info) {
+        }
 
-   struct OnUnloadDll
-   {
-      OnUnloadDll( LPUNLOAD_DLL_DEBUG_INFO info ) {
-      }
+        void operator()( IDebugListenerPtr listener ) const {
+            listener->OnExitThread();
+        }
 
-      void operator()( IDebugListenerPtr listener ) const {
-         listener->OnUnloadDll();
-      }
-   };
+    private :
+        LPEXIT_THREAD_DEBUG_INFO m_Info;
+    };
 
-   struct OnException
-   {
-      OnException( LPEXCEPTION_DEBUG_INFO info ) {
-      }
+    class OnLoadDll
+    {
+    public :
+        OnLoadDll( LPLOAD_DLL_DEBUG_INFO info )
+            : m_Info(info) {
+        }
 
-      void operator()( IDebugListenerPtr listener ) const {
-         listener->OnException();
-      }
-   };
+        void operator()( IDebugListenerPtr listener ) const {
+            listener->OnLoadDll();
+        }
+
+    private :
+        LPLOAD_DLL_DEBUG_INFO m_Info;
+    };
+
+    class OnUnloadDll
+    {
+    public :
+        OnUnloadDll( LPUNLOAD_DLL_DEBUG_INFO info )
+            : m_Info(info) {
+        }
+
+        void operator()( IDebugListenerPtr listener ) const {
+            listener->OnUnloadDll();
+        }
+
+    private :
+        LPUNLOAD_DLL_DEBUG_INFO m_Info;
+    };
+
+    class OnException
+    {
+    public :
+        OnException( LPEXCEPTION_DEBUG_INFO info )
+            : m_Info(info) {
+        }
+
+        void operator()( IDebugListenerPtr listener ) const {
+            listener->OnException();
+        }
+
+    private :
+        LPEXCEPTION_DEBUG_INFO m_Info;
+    };
 }
 
 
-void DebugImpl::RegisterListener( IDebugListenerPtr listener ) {
+void DebuggerImpl::RegisterListener( IDebugListenerPtr listener ) {
    m_Listeners.push_back(listener);
 }
 
 
-bool DebugImpl::Wait() const 
+bool DebuggerImpl::Wait() const 
 {
    DEBUG_EVENT debug;
 

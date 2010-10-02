@@ -21,7 +21,7 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-19 20:29
- * \brief  DebugListener base class definition.
+ * \brief  DebugListener base class.
  */
 
 #if !defined(DEBUG_DEBUGLISTENERBASE_H)
@@ -35,7 +35,7 @@ namespace Debug
      * \author  Johan Andersson <skagget77@gmail.com>
      * \date    2010-04-11 17:57
      * \ingroup Debug
-     * \brief   The DebugListenerBase class.
+     * \brief   DebugListenerBase class.
      */
     class DebugListenerBase : public IDebugListener 
     {
@@ -48,7 +48,7 @@ namespace Debug
         /*!
          * Default implementation does nothing.
          */
-        void OnExitProcess() {
+        void OnExitProcess( uint32 ) {
         }
 
         /*!

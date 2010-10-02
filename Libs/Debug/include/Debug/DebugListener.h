@@ -21,13 +21,13 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-19 20:28
- * \brief  DebugListener interface definition.
+ * \brief  DebugListener interface.
  */
 
 #if !defined(DEBUG_DEBUGLISTENER_H)
 #define DEBUG_DEBUGLISTENER_H
 
-#include "DebugFwd.h"
+#include "Core/BasicTypes.h"
 
 namespace Debug
 {
@@ -35,7 +35,7 @@ namespace Debug
      * \author  Johan Andersson <skagget77@gmail.com>
      * \date    2010-04-11 17:57
      * \ingroup Debug
-     * \brief   The IDebugListener interface.
+     * \brief   IDebugListener interface.
      */
     struct IDebugListener 
     {
@@ -51,8 +51,10 @@ namespace Debug
 
         /*! 
          * Called when the debugged process exits.
+         *
+         * \param exitCode Process exit code.
          */
-        virtual void OnExitProcess() = 0;
+        virtual void OnExitProcess( uint32 exitCode ) = 0;
 
         /*! 
          * Called when a thread is created in the debugged process.

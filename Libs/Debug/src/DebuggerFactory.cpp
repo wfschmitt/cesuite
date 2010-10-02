@@ -20,25 +20,26 @@
 /*!
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
- * \date   2010-04-19 20:26
- * \brief  Debug factory function.
+ * \date   2010-04-19 20:30
+ * \brief  Debugger factory function.
  */
 
-#if !defined(DEBUG_DEBUGFACTORY_H)
-#define DEBUG_DEBUGFACTORY_H
+#include "PreCompile.h"
+#include "Debug/Debugger.h"
+#include "Debug/DebuggerFactory.h"
+#include "Debug/DebugListener.h"
+#include "DebuggerImpl.h"
 
-#include "DebugFwd.h"
 
-namespace Debug
+using namespace Debug;
+
+
+IDebuggerPtr Debug::CreateDebugger( IDebugListenerPtr listener ) 
 {
-   /*!    
-    * Creates a new instance of an IDebug implementation.
-    *
-    * \ingroup Debug
-    * \param   listener Listener to register with the implementation.
-    * \return  An IDebug implementation.
-    */
-   DEBUG_API IDebugPtr CreateDebug( IDebugListenerPtr listener );
-}
+   IDebuggerPtr debugger(new DebuggerImpl);
 
-#endif   // DEBUG_DEBUGFACTORY_H
+   // Register listener with implementation.
+   debugger->RegisterListener(listener);
+
+   return debugger;
+}
