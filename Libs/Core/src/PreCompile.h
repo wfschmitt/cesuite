@@ -34,4 +34,4 @@
 
 #include "Core/CoreApi.h"
 
-#endif  // CORE_PRECOMPILE_H
+#endif  /* CORE_PRECOMPILE_H */

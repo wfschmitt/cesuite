@@ -39,4 +39,4 @@ typedef unsigned char uint8;
  */
 typedef unsigned int uint32;
 
-#endif  // CORE_BASICTYPES_H
+#endif  /* CORE_BASICTYPES_H */

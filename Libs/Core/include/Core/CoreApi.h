@@ -37,4 +37,4 @@
 #define CORE_API
 #endif
 
-#endif  // CORE_COREAPI_H
+#endif  /* CORE_COREAPI_H */

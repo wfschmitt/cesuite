@@ -64,4 +64,4 @@ namespace Core
     };
 }
 
-#endif  // CORE_COREEXCEPTION_H
+#endif  /* CORE_COREEXCEPTION_H */

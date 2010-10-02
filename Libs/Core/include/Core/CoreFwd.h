@@ -35,4 +35,4 @@ namespace Core
     typedef std::tr1::shared_ptr<IParser> IParserPtr;
 }
 
-#endif   // CORE_COREFWD_H
+#endif   /* CORE_COREFWD_H */

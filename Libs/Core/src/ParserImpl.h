@@ -105,4 +105,4 @@ namespace Core
     };
 }
 
-#endif  // CORE_PARSERIMPL_H
+#endif  /* CORE_PARSERIMPL_H */

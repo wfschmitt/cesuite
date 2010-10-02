@@ -41,14 +41,14 @@ namespace Core
     {
     public :
         /*!
-         * Creates a new instance of the ParserException class.
+         * Constructor.
          *
-         * \param msg Detailed message.
+         * \param details Detailed message.
          */
-        ParserException( const std::wstring& msg )
-            : CoreException(msg) {
+        ParserException( const std::wstring& details )
+            : CoreException(details) {
         }
     };
 }
 
-#endif  // CORE_PARSEREXCEPTION_H
+#endif  /* CORE_PARSEREXCEPTION_H */

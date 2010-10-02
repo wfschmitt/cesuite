@@ -59,4 +59,4 @@ namespace Core
     CORE_API IParserPtr CreateParser( const std::wstring& cmdLine, bool caseInsensitive );
 }
 
-#endif  // CORE_PARSERFACTORY_H
+#endif  /* CORE_PARSERFACTORY_H */
