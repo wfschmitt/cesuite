@@ -45,7 +45,7 @@
 				AdditionalIncludeDirectories="$(CoreIncludeDir)"
 				PreprocessorDefinitions="_LIB;DEBUG;_DEBUG"
 				MinimalRebuild="true"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -117,6 +117,7 @@
 				FavorSizeOrSpeed="2"
 				AdditionalIncludeDirectories="$(CoreIncludeDir)"
 				PreprocessorDefinitions="_LIB;NDEBUG"
+				RuntimeLibrary="0"
 				WarningLevel="3"
 			/>
 			<Tool

@@ -21,25 +21,25 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-19 20:58
- * \brief  CeDebug doxygen definition.
+ * \brief  CeAgent doxygen definition.
  */
 
-#if !defined(CEDEBUG_DOXYGEN_H)
-#define CEDEBUG_DOXYGEN_H
+#if !defined(CEAGENT_DOXYGEN_H)
+#define CEAGENT_DOXYGEN_H
 
 #error "Do not include this file"
 
 /*!
- * \defgroup CeDebug CeDebug
+ * \defgroup CeAgent CeAgent
  */
 
 /*!
  * \author  Johan Andersson <skagget77@gmail.com>
  * \date    2010-04-11 19:15
- * \ingroup CeDebug
- * \brief
+ * \ingroup CeAgent
+ * \brief   Application deployed on device.
  */
-namespace CeDebug {
+namespace CeAgent {
 }
 
-#endif   // CEDEBUG_DOXYGEN_H
+#endif   /* CEAGENT_DOXYGEN_H */

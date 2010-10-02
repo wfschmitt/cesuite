@@ -17,4 +17,11 @@
  * Copyright 2010 Johan Andersson.
  */
 
+/*!
+ * \file
+ * \author Johan Andersson <skagget77@gmail.com>
+ * \date   2010-09-20 17:22
+ * \brief  CeAgent precompiled header.
+ */
+
 #include "PreCompile.h"

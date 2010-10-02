@@ -17,15 +17,22 @@
  * Copyright 2010 Johan Andersson.
  */
 
+/*!
+ * \file
+ * \author Johan Andersson <skagget77@gmail.com>
+ * \date   2010-04-19 21:01
+ * \brief  ProcessMonitor definition.
+ */
+
 #include "PreCompile.h"
-#include "ProcessMonitor.h"
 #include "Registry/Registry.h"
 #include "Registry/RegistryException.h"
+#include "ProcessMonitor.h"
 
 #include <string>
 
 
-using namespace CeDebug;
+using namespace CeAgent;
 using namespace Registry;
 
 
@@ -33,7 +40,8 @@ ProcessMonitor::ProcessMonitor( IRegistryPtr registry, const std::wstring& name 
     : m_Registry(registry), m_Name(name) 
 {
     try {
-        m_Registry->SetValueInt(m_Name, PROCESS_NONE);
+        m_Registry->SetValueInt(m_Name + L".status", PROCESS_NONE);
+        m_Registry->SetValueInt(m_Name + L".exitCode", 0);
     }
     catch(RegistryException&) {
     }
@@ -43,17 +51,18 @@ ProcessMonitor::ProcessMonitor( IRegistryPtr registry, const std::wstring& name 
 void ProcessMonitor::OnCreateProcess() 
 {
     try {
-        m_Registry->SetValueInt(m_Name, PROCESS_STARTED);
+        m_Registry->SetValueInt(m_Name + L".status", PROCESS_STARTED);
     }
     catch(RegistryException&) {
     }
 }
 
 
-void ProcessMonitor::OnExitProcess() 
+void ProcessMonitor::OnExitProcess( uint32 exitCode ) 
 {
     try {
-        m_Registry->SetValueInt(m_Name, PROCESS_EXITED);
+        m_Registry->SetValueInt(m_Name + L".status", PROCESS_EXITED);
+        m_Registry->SetValueInt(m_Name + L".exitCode", exitCode);
     }
     catch(RegistryException&) {
     }

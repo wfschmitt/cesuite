@@ -63,6 +63,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				DelayLoadDLLs="$(NOINHERIT)"
+				GenerateDebugInformation="true"
 			/>
 			<Tool
 				Name="VCALinkTool"

@@ -25,24 +25,30 @@
  */
 
 #include "PreCompile.h"
-#include "ProcessMonitor.h"
+#include "Core/CoreException.h"
 #include "Core/Parser.h"
 #include "Core/ParserFactory.h"
-#include "Debug/Debug.h"
-#include "Debug/DebugFactory.h"
+#include "Debug/Debugger.h"
+#include "Debug/DebuggerFactory.h"
 #include "Registry/Registry.h"
 #include "Registry/RegistryFactory.h"
+#include "ProcessMonitor.h"
 
 #include <Windows.h>
 
 
-using namespace CeDebug;
+using namespace CeAgent;
+using namespace Core;
 using namespace Debug;
 using namespace Registry;
 
 
 /*!
+ * Executes the specified file.
  *
+ * \param name Name.
+ * \param file File to execute.
+ * \param args Command line options.
  *
  */
 void RunProcess( const std::wstring& name, const std::wstring& file, const std::wstring& args )
@@ -51,31 +57,42 @@ void RunProcess( const std::wstring& name, const std::wstring& file, const std::
 
     if(CreateProcess(file.c_str(), args.c_str(), 0, 0, 0, DEBUG_PROCESS, 0, 0, 0, &procinfo))
     {
-        IDebugPtr debug = CreateDebug(
+        IDebuggerPtr debugger = CreateDebugger(
             IDebugListenerPtr(new ProcessMonitor(CreateRegistry(L"Software\\CeDebug"), name)));
 
-        while(debug->Wait())
-            Sleep(50);
+        while(debugger->Wait());
     }
+    else
+        throw CoreException(L"Failed to create process");
 }
 
 
 /*!
- * CeDebug /key name /debug "\Storage Card\TestWM5\TestWM5 -xml -o \Test"
+ * CeAgent application entry point.
  *
+ * \ingroup CeAgent
+ * \param   instance Application instance.
+ * \param   prevInstance Not used.
+ * \param   cmdLine Command line options.
+ * \param   cmdShow Control how the window is to be shown.
+ * \return  Application exit code.
  */
-int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow )
+int WINAPI WinMain( HINSTANCE instance, HINSTANCE prevInstance, LPWSTR cmdLine, int cmdShow )
 {
-    try {
-        Core::IParserPtr parser = Core::CreateParser(lpCmdLine);
+    try 
+    {
+        IParserPtr parser = CreateParser(cmdLine, true);
 
-        std::wstring name = parser->GetArgumentValue(L"/name");
-        std::wstring file = parser->GetArgumentValue(L"/file");
-        std::wstring args = parser->GetArgumentValue(L"/args");
+        std::wstring name = parser->GetValue(L"/NAME");
+        std::wstring file = parser->GetValue(L"/FILE");
+        std::wstring args = parser->GetValue(L"/ARGS", L"");
 
         RunProcess(name, file, args);
     }
-    catch(std::runtime_error&) {
-        MessageBox(0, L"Failed to launch process", L"CeDebug", MB_OK);
+    catch(CoreException& e) {
+        MessageBox(0, e.GetDetails().c_str(), L"CeAgent", MB_OK);
+    }
+    catch(...) {
+        MessageBox(0, L"Caught unhandled exception", L"CeAgent", MB_OK);
     }
 }

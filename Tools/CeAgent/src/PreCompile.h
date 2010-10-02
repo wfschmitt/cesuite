@@ -17,11 +17,18 @@
  * Copyright 2010 Johan Andersson.
  */
 
-#if !defined(CEBEBUG_PRECOMPILE_H)
-#define CEBEBUG_PRECOMPILE_H
+/*!
+ * \file
+ * \author Johan Andersson <skagget77@gmail.com>
+ * \date   2010-04-19 19:05
+ * \brief  CeAgent precompiled header.
+ */
+
+#if !defined(CEAGENT_PRECOMPILE_H)
+#define CEAGENT_PRECOMPILE_H
 
 #include "Core/CoreApi.h"
 #include "Debug/DebugApi.h"
 #include "Registry/RegistryApi.h"
 
-#endif   // CEBEBUG_PRECOMPILE_H
+#endif   /* CEAGENT_PRECOMPILE_H */

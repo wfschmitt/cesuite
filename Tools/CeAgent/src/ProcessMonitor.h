@@ -24,27 +24,28 @@
  * \brief  ProcessMonitor definition.
  */
 
-#if !defined(CEDEBUG_PROCESSMONITOR_H)
-#define CEDEBUG_PROCESSMONITOR_H
+#if !defined(CEAGENT_PROCESSMONITOR_H)
+#define CEAGENT_PROCESSMONITOR_H
 
 #include "Debug/DebugListenerBase.h"
 #include "Registry/RegistryFwd.h"
 
-namespace CeDebug
+namespace CeAgent
 {
     /*!
      * \author  Johan Andersson <skagget77@gmail.com>
      * \date    2010-04-19 21:01
-     * \ingroup CeDebug
-     * \brief   The ProcessMonitor class.
+     * \ingroup CeAgent
+     * \brief   ProcessMonitor class.
      */
     class ProcessMonitor : public Debug::DebugListenerBase
     {
     public :
         /*!
-         *
+         * The different states a monitored process can be in.
          */
-        enum ProcessState {
+        enum ProcessState 
+        {
             PROCESS_NONE,
             PROCESS_STARTED,
             PROCESS_EXITED
@@ -53,16 +54,16 @@ namespace CeDebug
         /*!
          * Constructor.
          *
-         * \param registry
-         * \param[in] name Name.
+         * \param registry Registry.
+         * \param name Name.
          */
         ProcessMonitor( Registry::IRegistryPtr registry, const std::wstring& name );
 
-        /*
-         * Inherited from DebugListenerBase.
-         */
+        /* Documented in IDebugListener. */
         void OnCreateProcess();
-        void OnExitProcess();
+
+        /* Documented in IDebugListener. */
+        void OnExitProcess( uint32 exitCode );
 
     private :
         Registry::IRegistryPtr m_Registry;
@@ -70,4 +71,4 @@ namespace CeDebug
     };
 }
 
-#endif   // CEDEBUG_PROCESSMONITOR_H
+#endif   /* CEAGENT_PROCESSMONITOR_H */
