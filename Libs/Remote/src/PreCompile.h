@@ -36,6 +36,7 @@
 #include <Rapi2.h>
 
 #include "Core/CoreApi.h"
+#include "Registry/RegistryApi.h"
 #include "Remote/RemoteApi.h"
 
 #pragma comment(lib, "rapi")
