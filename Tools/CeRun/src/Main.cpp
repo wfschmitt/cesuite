@@ -1,38 +1,65 @@
+/*
+ * This file is part of CeSuite.
+ *
+ * CeSuite is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * CeSuite is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with CeSuite.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Copyright 2010 Johan Andersson.
+ */
+
+/*!
+ * \file
+ * \author Johan Andersson <skagget77@gmail.com>
+ * \date   2010-10-03 10:49
+ * \brief  CeRun.
+ */
 
 #include "PreCompile.h"
 #include "CeRunFwd.h"
+#include "Core/CoreException.h"
+#include "Remote/Device.h"
+#include "Remote/Remote.h"
+#include "Remote/RemoteException.h"
+#include "Remote/RemoteFactory.h"
 
 #include <AtlBase.h>
-
 #include <iostream>
+
+
+using namespace Remote;
+
 
 int wmain()
 {
-   CoInitializeEx(0, COINIT_MULTITHREADED);
+   if(CoInitializeEx(0, COINIT_MULTITHREADED) == S_OK)
    {
-      IRAPIDesktopPtr rapidesktop;
+       try 
+       {
+           IRemotePtr remote = CreateRemote();
 
-      if(rapidesktop.CoCreateInstance(CLSID_RAPI) == S_OK)
-      {
-         IRAPIEnumDevicesPtr enumdevices;
+           IDeviceCollection coll = remote->ListDevices();
 
-         if(rapidesktop->EnumDevices(&enumdevices) == S_OK)
-         {
-            IRAPIDevicePtr device;
+           for(IDeviceCollection::const_iterator it = coll.begin(); it != coll.end(); ++it)
+           {
+               (*it)->Execute(L"\\CeAgent.exe", L"/name monkey /file \\TestWM5.exe");
+               //(*it)->CopyFileTo(L"d:\\git\\cesuite\\Bin\\Debug\\Pocket PC 2003 (ARMV4)\\CeAgent.exe", L"\\CeAgent2.exe");
+           }
+       }
+       catch(Core::CoreException& e)
+       {
+           std::wcout << L"Caught exception: '" << e.GetDetails() << L"'" << std::endl;
+       }
 
-            if(enumdevices->Next(&device) == S_OK)
-            {
-               RAPI_DEVICEINFO devinfo;
-
-               device->GetDeviceInfo(&devinfo);
-
-               std::wcout << "Name......: " << devinfo.bstrName     << std::endl
-                          << "Plaform...: " << devinfo.bstrPlatform << std::endl
-                          << "Version...: " << devinfo.dwOsVersionMajor << "." 
-                                            << devinfo.dwOsVersionMinor << std::endl;
-            }
-         }
-      }
+       CoUninitialize();
    }
-   CoUninitialize();
 }

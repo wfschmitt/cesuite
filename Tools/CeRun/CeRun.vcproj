@@ -18,8 +18,6 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)Bin\$(ConfigurationName)"
-			IntermediateDirectory="$(SolutionDir)Bin\$(ConfigurationName)\Tmp\$(ProjectName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(SolutionDir)Props\Windows.vsprops"
 			CharacterSet="1"
@@ -42,10 +40,9 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ActiveSyncIncludeDir)"
+				AdditionalIncludeDirectories="$(CoreIncludeDir);$(RemoteIncludeDir)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
-				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
 				PrecompiledHeaderThrough="PreCompile.h"
@@ -64,7 +61,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="rapi.lib rapiuuid.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(ActiveSyncLibDir)"
 				IgnoreDefaultLibraryNames="libc.lib, libcmt.lib, msvcrt.lib, libcd.lib, libcmtd.lib"
@@ -96,8 +92,6 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(SolutionDir)Props\Windows.vsprops"
 			CharacterSet="1"
@@ -122,12 +116,10 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="$(CoreIncludeDir);$(RemoteIncludeDir)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -141,6 +133,8 @@
 			<Tool
 				Name="VCLinkerTool"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="$(ActiveSyncLibDir)"
+				IgnoreDefaultLibraryNames="libc.lib;libcmt.lib;msvcrtd.lib;libcd.lib;libcmtd.lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"

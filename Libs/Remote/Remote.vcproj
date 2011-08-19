@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ActiveSyncIncludeDir);$(CoreIncludeDir);$(DebugIncludeDir)"
+				AdditionalIncludeDirectories="$(ActiveSyncIncludeDir);$(CoreIncludeDir);$(RegistryIncludeDir)"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				RuntimeLibrary="3"
@@ -100,7 +100,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(ActiveSyncIncludeDir);$(CoreIncludeDir)"
+				AdditionalIncludeDirectories="$(ActiveSyncIncludeDir);$(CoreIncludeDir);$(RegistryIncludeDir)"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -211,6 +211,14 @@
 			</File>
 			<File
 				RelativePath=".\src\RemoteImpl.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\RemoteRegistryImpl.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\RemoteRegistryImpl.h"
 				>
 			</File>
 		</Filter>

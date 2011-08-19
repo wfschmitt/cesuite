@@ -21,7 +21,7 @@
  * \file
  * \author Johan Andersson <skagget77@gmail.com>
  * \date   2010-04-13 22:38
- * \brief  CeAgent entry point.
+ * \brief  CeAgent.
  */
 
 #include "PreCompile.h"
@@ -58,7 +58,7 @@ void RunProcess( const std::wstring& name, const std::wstring& file, const std::
     if(CreateProcess(file.c_str(), args.c_str(), 0, 0, 0, DEBUG_PROCESS, 0, 0, 0, &procinfo))
     {
         IDebuggerPtr debugger = CreateDebugger(
-            IDebugListenerPtr(new ProcessMonitor(CreateRegistry(L"Software\\CeDebug"), name)));
+            IDebugListenerPtr(new ProcessMonitor(CreateRegistry(L"Software\\CeAgent"), name)));
 
         while(debugger->Wait());
     }
@@ -83,9 +83,9 @@ int WINAPI WinMain( HINSTANCE instance, HINSTANCE prevInstance, LPWSTR cmdLine, 
     {
         IParserPtr parser = CreateParser(cmdLine, true);
 
-        std::wstring name = parser->GetValue(L"/NAME");
-        std::wstring file = parser->GetValue(L"/FILE");
-        std::wstring args = parser->GetValue(L"/ARGS", L"");
+        std::wstring name = parser->GetValue(L"/name");
+        std::wstring file = parser->GetValue(L"/path");
+        std::wstring args = parser->GetValue(L"/args", L"");
 
         RunProcess(name, file, args);
     }

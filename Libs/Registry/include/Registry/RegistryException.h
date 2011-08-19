@@ -37,7 +37,7 @@ namespace Registry
      * \ingroup Registry
      * \brief   RegistryException class.
      */
-    class REGISTRY_API RegistryException : Core::CoreException
+    class REGISTRY_API RegistryException : public Core::CoreException
     {
     public :
         /*!
